@@ -36,14 +36,14 @@ let computerPoint = 0
 function game(){
     for (let i = 0; i < 5; i++){
         const computerSelection = getComputerChoice();
-        const playerSelection = prompt("rps?");
+        const playerSelection = prompt("Rock, paper or Scissors?");
     console.log(rpsPlay(playerSelection,computerSelection))}
            
 }
 game()
-console.log(playerPoint);
-console.log(computerPoint);
 
 if(playerPoint > computerPoint){
     console.log("You win!");
-}else console.log("You lose!")
+}else if(computerPoint > playerPoint){
+    console.log("You lose!");
+}else console.log("It's a draw!")

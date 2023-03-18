@@ -1,3 +1,6 @@
+let playerPoint = 0
+let computerPoint = 0 
+
 function getComputerChoice(){
     chance = Math.random() * 3;
     roundChance = Math.ceil(chance)
@@ -24,23 +27,33 @@ function rpsPlay(playerSelection, computerSelection){
     return `You lose! ${computerSelection} beats ${playerSelection}`
 }
 
-function playerChoice(){
-let entry = prompt("Rock, Paper or Scissors?");
-return playerChoice = entry.toLowerCase();
-}
-let playerPoint = 0
-let computerPoint = 0 
+
+// function playerChoice(){
+// let entry = prompt("Rock, Paper or Scissors?");
+// return playerChoice = entry.toLowerCase();
+// }
 
 // console.log(rpsPlay(playerChoice, computerSelection));
 
-function game(){
-    for (let i = 0; i < 5; i++){
+function game(playerSelection){
         const computerSelection = getComputerChoice();
-        const playerSelection = prompt("Rock, paper or Scissors?");
-    console.log(rpsPlay(playerSelection,computerSelection))}
+        console.log(playerSelection)
+        return rpsPlay(playerSelection,computerSelection);
            
 }
-game()
+
+let rockBtn = document.getElementById('rock')
+rockBtn.addEventListener("click",function(){
+    game("rock")
+});
+let paperBtn = document.getElementById('paper')
+paperBtn.addEventListener("click",function(){
+    game("paper")
+});
+let scissorBtn  = document.getElementById('scissors')
+scissorBtn.addEventListener("click",function(){
+    game("scissors")
+});
 
 if(playerPoint > computerPoint){
     console.log("You win!");

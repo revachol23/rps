@@ -14,13 +14,13 @@ function getComputerChoice(){
 function rpsPlay(playerSelection, computerSelection){
     if(playerSelection == computerSelection.toLowerCase() ){
         return "Draw!"
-    }else if(playerSelection == "rock" && computerSelection.toLowerCase() == "scissors"){
+    }else if(playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "scissors"){
         playerPoint++
         return "You Win! rock beats scissors!";
-    }else if(playerSelection == "paper" && computerSelection.toLowerCase() == "rock"){
+    }else if(playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "rock"){
         playerPoint++
         return "You Win! paper beats rock!";
-    }else if(playerSelection == "scissors" && computerSelection.toLowerCase() == "paper"){
+    }else if(playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "paper"){
         playerPoint++
         return "You Win! scissors beats paper!";    
     }else computerPoint++
@@ -36,27 +36,41 @@ function rpsPlay(playerSelection, computerSelection){
 // console.log(rpsPlay(playerChoice, computerSelection));
 
 function game(playerSelection){
-        const computerSelection = getComputerChoice();
-        console.log(playerSelection)
+    while(playerPoint <= 5){    
+    const computerSelection = getComputerChoice();
+        //Choice UI//
+        const pChoiceUi = document.getElementById("player-choice")
+        const cpuChoiceUi = document.getElementById("cpu-choice")
+        pChoiceUi.textContent = `Player: ${playerSelection}`;
+        cpuChoiceUi.textContent = `CPU: ${computerSelection}`;
+        //Point UI//
+        const pPointUi = document.getElementById("player-points")
+        const cpuPointUi = document.getElementById("cpu-points")
+        pPointUi.textContent = `Player: ${playerPoint}`;
+        cpuPointUi.textContent = `CPU: ${computerPoint}`;
+        if(computerPoint == 5){break}
+
         return rpsPlay(playerSelection,computerSelection);
-           
+    }
+    let winner = document.getElementById("condition");
+    if(playerPoint == 5){
+        winner.textContent = "You Win!";
+    }else if(computerPoint == 5){
+        winner.textContent = "You Lose!";
+    }
 }
 
 let rockBtn = document.getElementById('rock')
 rockBtn.addEventListener("click",function(){
-    game("rock")
+    game("Rock")
 });
 let paperBtn = document.getElementById('paper')
 paperBtn.addEventListener("click",function(){
-    game("paper")
+    game("Paper")
 });
 let scissorBtn  = document.getElementById('scissors')
 scissorBtn.addEventListener("click",function(){
-    game("scissors")
+    game("Scissors")
 });
 
-if(playerPoint > computerPoint){
-    console.log("You win!");
-}else if(computerPoint > playerPoint){
-    console.log("You lose!");
-}else console.log("It's a draw!")
+
